@@ -327,6 +327,11 @@ export const timelineEvents = [
     year: 2023,
     title: "AI Boom Propels NVIDIA",
     description: "NVIDIA's market value surges past $1 trillion as AI adoption accelerates worldwide."
+  },
+  {
+    year: 9999,
+    title: "Did you like my little game I made? ",
+    description: "I made this game to help you learn about Jensen's journey and the history of NVIDIA."
   }
 ];
 
