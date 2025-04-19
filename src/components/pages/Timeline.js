@@ -141,6 +141,21 @@ const Timeline = () => {
           </blockquote>
           <cite className="block mt-4 text-neon-green">— Jensen Huang, NVIDIA CEO</cite>
         </div>
+
+        {/* Jensen Huang YouTube Video */}
+        <div className="mt-16 mb-12 max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Watch Jensen Huang's Journey</h2>
+          <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-xl border-2 border-neon-green/30">
+            <iframe 
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/7ARBJQn6QkM"
+              title="Jensen Huang's Journey"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <p className="text-center text-gray-400 mt-4">Learn more about Jensen Huang's incredible vision and NVIDIA's rise to AI dominance</p>
+        </div>
       </div>
     </motion.div>
   );
