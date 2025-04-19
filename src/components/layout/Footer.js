@@ -25,11 +25,11 @@ const Footer = () => {
             NVIDIA
           </a>
           <span>|</span>
-          <a href="https://www.jensen-huang.com/" target="_blank" rel="noopener noreferrer" className="hover:text-neon-green transition-colors">
-            About Jensen
+          <a href="https://docs.google.com/document/d/1shQWAyDRHLspBOa9hcZIEoE7t0We4sFJchlynjifZHs/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-neon-green transition-colors">
+            Project Proposal and Research Document
           </a>
           <span>|</span>
-          <a href="https://github.com/your-username/journey-into-jensen" target="_blank" rel="noopener noreferrer" className="hover:text-neon-green transition-colors">
+          <a href="https://github.com/David-LaPaglia/journey-into-jensen" target="_blank" rel="noopener noreferrer" className="hover:text-neon-green transition-colors">
             GitHub
           </a>
         </motion.div>
