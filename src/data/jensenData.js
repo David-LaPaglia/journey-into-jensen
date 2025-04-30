@@ -1,4 +1,4 @@
-// Mock data for the Journey into Jensen experience
+// data for the Journey into Jensen experience
 
 export const nodes = [
   {
@@ -10,12 +10,17 @@ export const nodes = [
     content: {
       type: 'story',
       title: 'The NVIDIA Vision',
-      body: `When Jensen Huang co-founded NVIDIA in 1993, he had a clear vision: to elevate computer graphics 
-      to new heights. He saw that general-purpose CPUs weren't optimized for the complex calculations 
-      needed for advanced graphics. This led to the creation of the Graphics Processing Unit (GPU), 
-      revolutionizing gaming, design, and eventually AI.`,
+      body: `When Jensen Huang co-founded NVIDIA in 1993, he had a clear vision: to elevate computer graphics to new heights. He saw that general-purpose CPUs weren't optimized for the complex calculations needed for advanced graphics.
+
+This insight led to the creation of the Graphics Processing Unit (GPU), which would fundamentally change the computing landscape. While others focused on incremental improvements, Jensen envisioned an entirely new computing architecture.
+
+His bold vision wasn't limited to the present moment—he saw the long-term potential for parallel computing that others missed. This foresight would eventually position NVIDIA perfectly for the AI revolution, decades later.`,
       quote: `"We're all living in a science fiction dream right now."`,
-      year: 1993
+      year: 1993,
+      image: '/images/jensen-founding.jpg',
+      imageCaption: 'Jensen Huang at the founding of NVIDIA, 1993',
+      hiddenInsight: `Jensen actually mortgaged his house to help fund NVIDIA in its early days. This personal financial risk demonstrates his absolute belief in the vision even before others could see it.`,
+      relatedLinks: ['innovation', 'product-design']
     }
   },
   {
@@ -27,11 +32,17 @@ export const nodes = [
     content: {
       type: 'story',
       title: 'Surviving Market Crashes',
-      body: `During the dot-com crash of the early 2000s, NVIDIA faced serious challenges. Many tech 
-      companies didn't survive, but under Jensen's leadership, NVIDIA adapted and persevered. 
-      Instead of cutting research, Jensen doubled down on innovation, setting the stage for future success.`,
+      body: `During the dot-com crash of the early 2000s, NVIDIA faced serious challenges. Many tech companies didn't survive, but under Jensen's leadership, NVIDIA adapted and persevered. 
+
+When NVIDIA's stock plummeted by 80%, most CEOs would have cut R&D to preserve cash. Jensen did the opposite - he doubled down on innovation, maintaining or even increasing investment in future technologies.
+
+He shifted focus from immediate market demands to long-term technological development, despite intense pressure from investors. This counter-intuitive approach built the technological foundation that would later propel NVIDIA to leadership in AI computing.`,
       quote: `"We're always a heartbeat away from failure. That's why we work so hard."`,
-      year: 2002
+      year: 2002,
+      image: '/images/nvidia-crash-chart.jpg',
+      imageCaption: 'NVIDIA stock during the dot-com crash (2000-2002)',
+      hiddenInsight: `Jensen reportedly told employees during this crisis: 'We'll survive because we're not here to simply make money; we're here to create technology that changes the world.' This philosophy continues to guide the company today.`,
+      relatedLinks: ['leadership-style', 'vision']
     }
   },
   {
@@ -54,11 +65,17 @@ export const nodes = [
     content: {
       type: 'story',
       title: 'Betting on AI',
-      body: `When deep learning began showing promise, Jensen saw the potential for GPUs beyond gaming and 
-      graphics. He pivoted significant resources toward optimizing NVIDIA technology for AI workloads. 
-      This decision transformed NVIDIA from a gaming company to an AI powerhouse.`,
+      body: `In 2012, when deep learning was still largely confined to research labs, Jensen made a pivotal decision that would transform NVIDIA's future. At Stanford University, he witnessed an AI model running on NVIDIA GPUs that could recognize cats in YouTube videos - a seemingly trivial task that represented a breakthrough in computer vision.
+
+While many industry leaders dismissed deep learning as an academic curiosity, Jensen immediately grasped its revolutionary potential. He redirected substantial company resources toward optimizing NVIDIA's technology specifically for AI workloads, creating specialized hardware and software stacks for machine learning.
+
+This shift represented an enormous gamble. NVIDIA was primarily known as a gaming graphics company, and pivoting toward an unproven technology faced internal and external resistance. Yet Jensen persisted, famously telling his team: "Either we're right about AI and will lead a revolution, or we're wrong and it won't matter what else we do."`,
       quote: `"AI is the most powerful technology force of our time."`,
-      year: 2012
+      year: 2012,
+      image: '/images/jensen-ai-keynote.jpg',
+      imageCaption: 'Jensen Huang introducing NVIDIA AI strategy at GTC 2016',
+      hiddenInsight: `Jensen personally convinced Facebook's AI research team to adopt NVIDIA GPUs for their deep learning models in 2013 - a critical early win that accelerated industry adoption. He spent hours with researchers understanding their needs in detail, showcasing his hands-on technical approach even as CEO.`,
+      relatedLinks: ['cuda', 'innovation', 'risk-taking']
     }
   },
   {

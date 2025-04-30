@@ -9,16 +9,18 @@ export const ProgressProvider = ({ children }) => {
   const [xp, setXp] = useState(0);
   const [achievements, setAchievements] = useState([]);
   const [unlockedContent, setUnlockedContent] = useState([]);
+  const [nodeVisitCounts, setNodeVisitCounts] = useState({});
 
   // Load progress from localStorage if available
   useEffect(() => {
     const savedProgress = localStorage.getItem('jensen-journey-progress');
     if (savedProgress) {
-      const { visitedNodes, xp, achievements, unlockedContent } = JSON.parse(savedProgress);
+      const { visitedNodes, xp, achievements, unlockedContent, nodeVisitCounts } = JSON.parse(savedProgress);
       setVisitedNodes(visitedNodes || []);
       setXp(xp || 0);
       setAchievements(achievements || []);
       setUnlockedContent(unlockedContent || []);
+      setNodeVisitCounts(nodeVisitCounts || {});
     }
   }, []);
 
@@ -26,15 +28,30 @@ export const ProgressProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem(
       'jensen-journey-progress',
-      JSON.stringify({ visitedNodes, xp, achievements, unlockedContent })
+      JSON.stringify({ visitedNodes, xp, achievements, unlockedContent, nodeVisitCounts })
     );
-  }, [visitedNodes, xp, achievements, unlockedContent]);
+  }, [visitedNodes, xp, achievements, unlockedContent, nodeVisitCounts]);
 
   // Mark a node as visited and add XP
   const visitNode = (nodeId) => {
+    // Update visit count for this node
+    setNodeVisitCounts(prev => ({
+      ...prev,
+      [nodeId]: (prev[nodeId] || 0) + 1
+    }));
+    
+    // First-time visit
     if (!visitedNodes.includes(nodeId)) {
       setVisitedNodes(prev => [...prev, nodeId]);
       addXp(10); // Base XP for visiting a new node
+    } else {
+      // Reward for revisiting (less than first visit but still valuable)
+      addXp(3); 
+      
+      // Trigger "depth explorer" achievements for revisits
+      if (nodeVisitCounts[nodeId] === 5) {
+        unlockAchievement('node_master', `Node Master: ${nodeId}`, 'Revisited the same node 5 times');
+      }
     }
   };
 
@@ -76,13 +93,33 @@ export const ProgressProvider = ({ children }) => {
     visitNode(`challenge-${challengeId}`);
   };
 
+  const unlockAchievement = (id, name, description) => {
+    setAchievements(prev => [...prev, { id, name, description }]);
+  };
+
+  const unlockContent = (contentId) => {
+    setUnlockedContent(prev => [...prev, contentId]);
+  };
+
+  const resetProgress = () => {
+    setVisitedNodes([]);
+    setXp(0);
+    setAchievements([]);
+    setUnlockedContent([]);
+    setNodeVisitCounts({});
+  };
+
   const value = {
     visitedNodes,
     xp,
     achievements,
     unlockedContent,
+    nodeVisitCounts,
     visitNode,
     addXp,
+    unlockAchievement,
+    unlockContent,
+    resetProgress,
     completeChallenge
   };
 

@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   }, [isOpen]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
         <>
           {/* Backdrop */}

@@ -1,32 +1,14 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useProgress } from '../../context/ProgressContext';
-import { bonusContent } from '../../data/jensenData';
-import Modal from '../ui/Modal';
 
 const Achievements = () => {
-  const { xp, achievements, unlockedContent, visitedNodes } = useProgress();
-  const [selectedContent, setSelectedContent] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const { xp, achievements, visitedNodes } = useProgress();
   
   // Calculate progress percentage
   const totalNodes = 10; // Total number of nodes in the mind map
   const completionPercentage = Math.round((visitedNodes.length / totalNodes) * 100);
   
-  // Get locked content IDs
-  const lockedContentIds = Object.keys(bonusContent).filter(id => !unlockedContent.includes(id));
-  
-  // Handle content click
-  const handleContentClick = (contentId) => {
-    setSelectedContent(bonusContent[contentId]);
-    setShowModal(true);
-  };
-  
-  // Close modal
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedContent(null);
-  };
+
   
   return (
     <motion.div 
@@ -126,129 +108,10 @@ const Achievements = () => {
           </div>
         </div>
         
-        {/* Unlocked Content */}
-        <div className="mb-10">
-          <h2 className="text-2xl font-bold text-white mb-4">Unlocked Content</h2>
-          
-          {unlockedContent.length === 0 ? (
-            <div className="bg-midnight rounded-lg p-6 text-center">
-              <p className="text-gray-400">You haven't unlocked any bonus content yet. Keep exploring!</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {unlockedContent.map(contentId => {
-                const content = bonusContent[contentId];
-                return (
-                  <motion.div
-                    key={contentId}
-                    className="bg-midnight rounded-lg p-5 shadow-md cursor-pointer"
-                    whileHover={{ scale: 1.02 }}
-                    onClick={() => handleContentClick(contentId)}
-                  >
-                    <div className={`mb-2 text-sm font-medium px-2 py-1 rounded inline-block ${
-                      content.type === 'quote' ? 'bg-blue-900/30 text-blue-400' :
-                      content.type === 'video' ? 'bg-red-900/30 text-red-400' :
-                      content.type === 'fact' ? 'bg-purple-900/30 text-purple-400' :
-                      'bg-yellow-900/30 text-yellow-400'
-                    }`}>
-                      {content.type.charAt(0).toUpperCase() + content.type.slice(1)}
-                    </div>
-                    <h3 className="text-lg font-medium text-white mb-1">
-                      {content.title || 'Jensen Quote'}
-                    </h3>
-                    <p className="text-gray-400 text-sm line-clamp-2">
-                      {content.content || content.excerpt || 'Click to view'}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-        
-        {/* Locked Content */}
-        <div>
-          <h2 className="text-2xl font-bold text-white mb-4">Locked Content</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {lockedContentIds.length === 0 ? (
-              <div className="bg-midnight rounded-lg p-6 col-span-2 text-center">
-                <p className="text-gray-400">You've unlocked all available content. Congratulations!</p>
-              </div>
-            ) : (
-              lockedContentIds.map(contentId => (
-                <div
-                  key={contentId}
-                  className="bg-gray-900/50 rounded-lg p-5 shadow-md blur-sm opacity-70"
-                >
-                  <div className="mb-2 text-sm font-medium px-2 py-1 rounded inline-block bg-gray-800 text-gray-500">
-                    ???
-                  </div>
-                  <h3 className="text-lg font-medium text-gray-500 mb-1">
-                    Locked Content
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Keep exploring to unlock this content
-                  </p>
-                </div>
-              ))
-            )}
-          </div>
-        </div>
+
+
       </div>
-      
-      {/* Content Detail Modal */}
-      {selectedContent && (
-        <Modal isOpen={showModal} onClose={handleCloseModal} title={selectedContent.title || 'Jensen Quote'}>
-          <div className="p-6">
-            {selectedContent.type === 'quote' && (
-              <div>
-                <blockquote className="border-l-4 border-neon-green pl-4 py-2 my-4 text-xl font-medium italic text-white">
-                  "{selectedContent.content}"
-                </blockquote>
-                {selectedContent.context && (
-                  <div className="text-gray-400 mt-4">{selectedContent.context}</div>
-                )}
-              </div>
-            )}
-            
-            {selectedContent.type === 'video' && (
-              <div>
-                <p className="text-gray-300 mb-4">{selectedContent.description}</p>
-                <div className="aspect-video bg-gray-900 rounded flex items-center justify-center">
-                  <a 
-                    href={selectedContent.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-neon-green hover:underline flex items-center"
-                  >
-                    <svg className="w-10 h-10 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"></path>
-                    </svg>
-                    Watch Video
-                  </a>
-                </div>
-              </div>
-            )}
-            
-            {selectedContent.type === 'fact' && (
-              <div>
-                <p className="text-gray-300">{selectedContent.content}</p>
-              </div>
-            )}
-            
-            {selectedContent.type === 'interview' && (
-              <div>
-                <blockquote className="border-l-4 border-neon-green pl-4 py-2 my-4 text-gray-300">
-                  {selectedContent.excerpt}
-                </blockquote>
-                {selectedContent.source && (
-                  <div className="text-gray-400 mt-4">Source: {selectedContent.source}</div>
-                )}
-              </div>
-            )}
-          </div>
-        </Modal>
-      )}
+
     </motion.div>
   );
 };

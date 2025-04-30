@@ -9,6 +9,7 @@ import DecisionChallenge from './components/pages/DecisionChallenge';
 import Achievements from './components/pages/Achievements';
 import Timeline from './components/pages/Timeline';
 import Settings from './components/pages/Settings';
+import TechExplainer from './components/pages/TechExplainer';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 
@@ -51,6 +52,7 @@ function App() {
                   <Route path="/challenge/:nodeId" element={<DecisionChallenge />} />
                   <Route path="/achievements" element={<Achievements />} />
                   <Route path="/timeline" element={<Timeline />} />
+                  <Route path="/tech" element={<TechExplainer />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

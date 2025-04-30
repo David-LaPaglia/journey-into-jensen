@@ -34,6 +34,9 @@ const Navbar = () => {
               <NavLink to="/mindmap" onClick={() => playSoundEffect('click')}>Mind Map</NavLink>
             </li>
             <li>
+              <NavLink to="/tech" onClick={() => playSoundEffect('click')}>Tech Explainer</NavLink>
+            </li>
+            <li>
               <NavLink to="/achievements" onClick={() => playSoundEffect('click')}>Achievements</NavLink>
             </li>
             <li>
